@@ -1,0 +1,12 @@
+.idea/
+build/
+logs/
+jars/
+saves/
+out/
+javadoc/
+config/
+test_*.xml
+*.plantuml
+~$*
+gauss_lab1.iml
