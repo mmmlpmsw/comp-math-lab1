@@ -1,12 +1,10 @@
-package mmmlpmsw.comp_math.lab1;
+package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
 
 public class Equation {
     private double[] equationCoefficients;
-//    private int numberOfUnknowns;
     //todo remove public after tests
     public Equation (double[] equationCoefficients) {
         this.equationCoefficients = equationCoefficients;
-//        this.numberOfUnknowns = equationCoefficients.length - 1;
     }
 
     public double getCoefficient(int index) {

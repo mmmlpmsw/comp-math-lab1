@@ -1,4 +1,6 @@
-package mmmlpmsw.comp_math.lab1;
+package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
+
+import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Equation;
 
 public class LinearSystem {
     private Equation[] matrix;

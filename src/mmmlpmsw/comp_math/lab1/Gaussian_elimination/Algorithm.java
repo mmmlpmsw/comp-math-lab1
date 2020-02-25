@@ -1,10 +1,11 @@
-package mmmlpmsw.comp_math.lab1;
+package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
 
 public class Algorithm {
     private LinearSystem linearSystem;
     private double[][] savedLinearSystem;
     final int numberOfUnknowns;
     private double[] solutions;
+
     public Algorithm (LinearSystem linearSystem) {
         this.linearSystem = linearSystem;
         this.savedLinearSystem = saveLinearSystem();
@@ -14,10 +15,8 @@ public class Algorithm {
 
     public double[] solve() {
         straightRun();
-        double[] solutions = returnRun();
-        return solutions;
+        return returnRun();
     }
-
 
     private void straightRun () {
         for (int k = 0; k < numberOfUnknowns; k ++) {
@@ -61,7 +60,7 @@ public class Algorithm {
         }
     }
 
-    public static void calculate(LinearSystem system, int strIndex1, int strIndex2, double coef) {
+    private void calculate(LinearSystem system, int strIndex1, int strIndex2, double coef) {
         for (int i = 0; i < system.getNumberOfUnknowns() + 1; i ++) {
             double current = system.getEquationCoefficient(strIndex1, i);
             system.setEquationCoefficient(strIndex1, i,

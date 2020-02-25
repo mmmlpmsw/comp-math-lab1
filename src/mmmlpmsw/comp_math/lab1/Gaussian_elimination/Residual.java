@@ -1,11 +1,13 @@
-package mmmlpmsw.comp_math.lab1;
+package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
+
+import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Algorithm;
 
 public class Residual {
 
     private Algorithm algorithm;
 
     public Residual(Algorithm algorithm) {
-        this.algorithm = algorithm;;
+        this.algorithm = algorithm;
     }
 
     public double[] getResiduals() {

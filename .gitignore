@@ -9,4 +9,5 @@ config/
 test_*.xml
 *.plantuml
 ~$*
+aaaa.txt
 gauss_lab1.iml

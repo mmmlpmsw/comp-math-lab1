@@ -1,13 +1,10 @@
-import mmmlpmsw.comp_math.lab1.Algorithm;
-import mmmlpmsw.comp_math.lab1.Determinant;
-import mmmlpmsw.comp_math.lab1.Equation;
-import mmmlpmsw.comp_math.lab1.LinearSystem;
+import mmmlpmsw.comp_math.lab1.InputReader;
 
-import java.util.Scanner;
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        Scanner in = new Scanner(System.in);
 //        int size = in.nextInt();
 //        in.nextLine();
@@ -27,20 +24,21 @@ public class Main {
 //                }
 //            }
 //        }
-        Equation[] equations = new Equation[3];
-        equations[0] = new Equation(new double[]{1, 4, 5, 6});
-        equations[1] = new Equation(new double[]{7, 3, 3, 7});
-        equations[2] = new Equation(new double[]{1, 5, 9, 0});
+//        Equation[] equations = new Equation[3];
+//        equations[0] = new Equation(new double[]{1, 4, 5, 6});
+//        equations[1] = new Equation(new double[]{7, 3, 3, 7});
+//        equations[2] = new Equation(new double[]{1, 5, 9, 0});
+//
+//
+//        LinearSystem system = new LinearSystem(equations);
+//        Algorithm algorithm = new Algorithm(system);
+//        double[] a = algorithm.solve();
+//        for (int i = 1; i < a.length + 1; i ++) {
+//            System.out.println("x" + i + " = " + a[i - 1]);
+//        }
 
+        InputReader reader = new InputReader();
+        reader.process();
 
-        LinearSystem system = new LinearSystem(equations);
-        Algorithm algorithm = new Algorithm(system);
-        double[] a = algorithm.solve();
-        for (int i = 1; i < a.length + 1; i ++) {
-            System.out.println("x" + i + " = " + a[i - 1]);
-        }
-
-        Determinant d = new Determinant(system);
-        System.out.println(d.getDeterminant());
     }
 }
