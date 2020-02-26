@@ -7,28 +7,43 @@ import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Residual;
 
 public class OutputCombiner {
 
-    private LinearSystem linearSystem;
     private Algorithm algorithm;
     private Determinant determinant;
     private Residual residual;
+    private LinearSystem linearSystem;
 
-
-    OutputCombiner(LinearSystem linearSystem) {
-        this.linearSystem = linearSystem;
+    public OutputCombiner(LinearSystem linearSystem) {
         this.algorithm = new Algorithm(linearSystem);
         this.determinant = new Determinant(linearSystem);
         this.residual = new Residual(algorithm);
+        this.linearSystem = linearSystem;
     }
-    //todo вывод решений и невязок
+
     public boolean combineOutput() {
         if (determinant.getDeterminant() == 0) {
-            System.out.println("Can't solve it.");
+            System.out.println("Can't solve it - detA = 0x");
             return false;
         }
 
         System.out.println("Determinant: " + determinant.getDeterminant());
 
+        for (int i = 0; i < linearSystem.getNumberOfUnknowns(); i ++) {
+            for (int j = 0; j < linearSystem.getNumberOfUnknowns() + 1; j ++) {
+                System.out.printf("%.3f", linearSystem.getEquationCoefficient(i, j));
+                System.out.print("  ");
+            }
+            System.out.println();
+        }
 
+        double[] solutions = algorithm.getSolutions();
+
+        for (int i = 1; i < solutions.length + 1; i ++)
+            System.out.println("x" + i + " = " + solutions[i - 1]);
+
+        double[] residuals = residual.getResiduals();
+        System.out.println("Residuals: ");
+        for (int i = 0; i < residuals.length; i ++)
+            System.out.println(residuals[i]);
 
         return true;
     }

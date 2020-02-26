@@ -8,30 +8,28 @@ public class Algorithm {
 
     public Algorithm (LinearSystem linearSystem) {
         this.linearSystem = linearSystem;
-        this.savedLinearSystem = saveLinearSystem();
         this.numberOfUnknowns = linearSystem.getNumberOfUnknowns();
+        this.savedLinearSystem = saveLinearSystem();
         this.solutions = solve();
     }
 
-    public double[] solve() {
+    private double[] solve() {
         straightRun();
         return returnRun();
     }
 
     private void straightRun () {
         for (int k = 0; k < numberOfUnknowns; k ++) {
-            if (linearSystem.getEquationCoefficient(k, k) == 0) {
-                loop : for (int i = 0; i < numberOfUnknowns; i ++) {
-                    if (linearSystem.getEquationCoefficient(i, i) != 0) {
+            if (linearSystem.getEquationCoefficient(k, k) == 0)
+                for (int i = k; i < numberOfUnknowns; i ++)  //fixme i = 0 -> i = k
+                    if (linearSystem.getEquationCoefficient(i, k) != 0) { // fixme i -> k
                         swap(linearSystem, 0, i);
-                        break loop;
+                        break;
                     }
-                }
-            }
             for (int i = k + 1; i < numberOfUnknowns; i ++) {
                 double coefficient = linearSystem.findCoefficient(linearSystem.getEquationCoefficient(k, k),
                         linearSystem.getEquationCoefficient(i, k));
-                calculate(linearSystem, i, k, coefficient);
+                modifyRow(linearSystem, i, k, coefficient);
             }
         }
     }
@@ -43,9 +41,8 @@ public class Algorithm {
                 linearSystem.getEquationCoefficient(numberOfUnknowns - 1, numberOfUnknowns - 1);
 
         for (int k = numberOfUnknowns - 2; k >= 0; k --) {
-            for (int i = k + 1; i < numberOfUnknowns; i ++) {
+            for (int i = k + 1; i < numberOfUnknowns; i ++)
                 solutions[k] += -linearSystem.getEquationCoefficient(k, i) * solutions[i];
-            }
             solutions[k] += linearSystem.getEquationCoefficient(k, numberOfUnknowns);
             solutions[k] /= linearSystem.getEquationCoefficient(k, k);
         }
@@ -60,7 +57,7 @@ public class Algorithm {
         }
     }
 
-    private void calculate(LinearSystem system, int strIndex1, int strIndex2, double coef) {
+    private void modifyRow(LinearSystem system, int strIndex1, int strIndex2, double coef) {
         for (int i = 0; i < system.getNumberOfUnknowns() + 1; i ++) {
             double current = system.getEquationCoefficient(strIndex1, i);
             system.setEquationCoefficient(strIndex1, i,
@@ -70,11 +67,9 @@ public class Algorithm {
 
     private double[][] saveLinearSystem () {
         double [][] system = new double[numberOfUnknowns][numberOfUnknowns + 1];
-        for (int i = 0; i < numberOfUnknowns; i ++) {
-            for (int j = 0; j < numberOfUnknowns + 1; j ++) {
+        for (int i = 0; i < numberOfUnknowns; i ++)
+            for (int j = 0; j < numberOfUnknowns + 1; j ++)
                 system[i][j] = linearSystem.getEquationCoefficient(i, j);
-            }
-        }
         return system;
     }
 
