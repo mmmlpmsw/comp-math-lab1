@@ -1,7 +1,5 @@
 package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
 
-import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Algorithm;
-
 public class Residual {
 
     private Algorithm algorithm;
@@ -17,12 +15,10 @@ public class Residual {
     private double[] calculateResiduals(double[][] system, double[] solutions) {
         double[] residuals = new double[system.length];
         for (int i = 0; i < system.length; i++) {
-            for (int j = 0; j < system.length; j++) {
+            for (int j = 0; j < system.length; j++)
                 residuals[i] += solutions[j] * system[i][j];
-            }
             residuals[i] -= system[i][system.length];
         }
-
       return residuals;
     }
 }

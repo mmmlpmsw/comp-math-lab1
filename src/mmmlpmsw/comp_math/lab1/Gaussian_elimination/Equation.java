@@ -2,7 +2,6 @@ package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
 
 public class Equation {
     private double[] equationCoefficients;
-    //todo remove public after tests
     public Equation (double[] equationCoefficients) {
         this.equationCoefficients = equationCoefficients;
     }

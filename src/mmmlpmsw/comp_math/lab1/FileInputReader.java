@@ -11,6 +11,8 @@ public class FileInputReader {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             int numberOfUnknowns = Integer.parseInt(reader.readLine());
+            ParseStringToEquation.check(numberOfUnknowns);
+
             Equation[] equations = new Equation[numberOfUnknowns];
 
             for (int i = 0; i < numberOfUnknowns; i ++) {

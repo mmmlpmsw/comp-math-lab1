@@ -19,4 +19,12 @@ public class ParseStringToEquation {
             throw new InputParseException("System is incorrect.");
         }
     }
+
+    public static void check(int numberOfUnknowns) throws InputParseException {
+        if (numberOfUnknowns > 20 || numberOfUnknowns < 1) {
+            throw new InputParseException("Incorrect size of array");
+        }
+
+    }
 }
+
