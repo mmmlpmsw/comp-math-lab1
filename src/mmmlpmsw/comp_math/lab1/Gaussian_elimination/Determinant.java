@@ -19,8 +19,6 @@ public class Determinant {
 
             int flag = 1;
             for (int i = 0; i < matrix.length; i ++) {
-//                if (i % 2 == 1) flag =- 1;
-//                else flag = 1;
                 result += flag * matrix[0][i] * calculateMatrix(getMatrixWithoutRowAndColumn(matrix,0, i));
                 flag = -flag;
             }

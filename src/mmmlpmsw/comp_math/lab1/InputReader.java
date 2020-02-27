@@ -53,7 +53,8 @@ public class InputReader {
                 for (int i = 0; i < numberOfUnknowns; i++) {
                     double[] coefficients = new double[numberOfUnknowns + 1];
                     for (int j = 0; j < numberOfUnknowns + 1; j++) {
-                        double coefficient = Math.random() * 20 - 10;
+                        double coefficient = Math.random() * 200 - 100;
+//                        coefficient = Math.round(coefficient);
                         coefficient = Math.round(coefficient * 100) / 100.0;
                         coefficients[j] = coefficient;
                         System.out.print(coefficient + " ");
@@ -67,6 +68,7 @@ public class InputReader {
                 return "";
             }
             //todo
+            // fixme цветной текст
             case "enter": {
                 System.out.print("Enter the number of unknowns >>>");
                 int count = scanner.nextInt();
