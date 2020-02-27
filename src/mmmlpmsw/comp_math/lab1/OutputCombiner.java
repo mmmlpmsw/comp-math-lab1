@@ -20,12 +20,13 @@ public class OutputCombiner {
     }
 
     public boolean combineOutput() {
-        if (determinant.getDeterminant() == 0) {
+//        if (determinant.getDeterminant() == 0) {
+        if (algorithm.getDeterminant() == 0) {
             System.out.println("Can't solve it - detA = 0x");
             return false;
         }
 
-        System.out.println("Determinant: " + determinant.getDeterminant());
+        System.out.println("Determinant: " + algorithm.getDeterminant());
 
         for (int i = 0; i < linearSystem.getNumberOfUnknowns(); i ++) {
             for (int j = 0; j < linearSystem.getNumberOfUnknowns() + 1; j ++) {

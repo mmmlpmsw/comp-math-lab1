@@ -5,6 +5,7 @@ public class Algorithm {
     private double[][] savedLinearSystem;
     final int numberOfUnknowns;
     private double[] solutions;
+    private double determinant = 1;
 
     public Algorithm (LinearSystem linearSystem) {
         this.linearSystem = linearSystem;
@@ -19,11 +20,13 @@ public class Algorithm {
     }
 
     private void straightRun () {
+        int count = 1;
         for (int k = 0; k < numberOfUnknowns; k ++) {
             if (linearSystem.getEquationCoefficient(k, k) == 0)
-                for (int i = k; i < numberOfUnknowns; i ++)  //fixme i = 0 -> i = k
-                    if (linearSystem.getEquationCoefficient(i, k) != 0) { // fixme i -> k
+                for (int i = k; i < numberOfUnknowns; i ++)
+                    if (linearSystem.getEquationCoefficient(i, k) != 0) {
                         swap(linearSystem, 0, i);
+                        count = -count;
                         break;
                     }
             for (int i = k + 1; i < numberOfUnknowns; i ++) {
@@ -32,6 +35,10 @@ public class Algorithm {
                 modifyRow(linearSystem, i, k, coefficient);
             }
         }
+        for (int i = 0; i < numberOfUnknowns; i ++) {
+            determinant *= linearSystem.getEquationCoefficient(i, i);
+        }
+            determinant = determinant * count;
     }
 
     private double[] returnRun() {
@@ -79,5 +86,9 @@ public class Algorithm {
 
     public double[] getSolutions() {
         return solutions;
+    }
+
+    public double getDeterminant() {
+        return determinant;
     }
 }
