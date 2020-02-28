@@ -1,7 +1,5 @@
 package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
 
-import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Equation;
-
 public class LinearSystem {
     private Equation[] matrix;
 
@@ -26,9 +24,7 @@ public class LinearSystem {
     }
 
     public double findCoefficient(double a, double b) {
-        if (a == 0.0f) return 1.0f;
+//        if (a == 0.0f) return 1.0f;
         return -b/a;
     }
-
-
 }

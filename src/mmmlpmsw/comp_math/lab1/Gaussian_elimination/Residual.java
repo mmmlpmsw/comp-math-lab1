@@ -2,11 +2,9 @@ package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
 
 public class Residual {
 
-    private Algorithm algorithm;
     private double[] residuals;
 
     public Residual(Algorithm algorithm) {
-        this.algorithm = algorithm;
         this.residuals = calculateResiduals(algorithm.getSavedLinearSystem(), algorithm.getSolutions());
     }
 
