@@ -3,7 +3,7 @@ package mmmlpmsw.comp_math.lab1;
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Algorithm;
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.LinearSystem;
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Residual;
-import mmmlpmsw.comp_math.lab1.utils.ResidualFormatter;
+import mmmlpmsw.comp_math.lab1.utils.OutputFormatter;
 
 public class OutputCombiner {
 
@@ -23,11 +23,14 @@ public class OutputCombiner {
             return false;
         }
 
-        System.out.println("Determinant: " + algorithm.getDeterminant());
+        System.out.println("Determinant: " + OutputFormatter.format(algorithm.getDeterminant()));
 
         for (int i = 0; i < linearSystem.getNumberOfUnknowns(); i ++) {
             for (int j = 0; j < linearSystem.getNumberOfUnknowns() + 1; j ++) {
-                System.out.printf("%.3f", linearSystem.getEquationCoefficient(i, j));
+                if (j < i)
+                    System.out.print("   0.0");
+                else
+                    System.out.printf("%.3f", linearSystem.getEquationCoefficient(i, j));
                 System.out.print("  ");
             }
             System.out.println();

@@ -21,14 +21,17 @@ public class Algorithm {
 
     private void straightRun () {
         int count = 1;
+        boolean isColumnZero = true;
         for (int k = 0; k < numberOfUnknowns; k ++) {
-            if (linearSystem.getEquationCoefficient(k, k) == 0)
-                for (int i = k; i < numberOfUnknowns; i ++)
+            if (linearSystem.getEquationCoefficient(k, k) == 0) {
+                for (int i = k; i < numberOfUnknowns; i++)
                     if (linearSystem.getEquationCoefficient(i, k) != 0) {
                         swap(linearSystem, 0, i);
                         count = -count;
                         break;
                     }
+                isColumnZero = false;
+            }
             for (int i = k + 1; i < numberOfUnknowns; i ++) {
                 double coefficient = linearSystem.findCoefficient(linearSystem.getEquationCoefficient(k, k),
                         linearSystem.getEquationCoefficient(i, k));
@@ -36,7 +39,7 @@ public class Algorithm {
             }
         }
 
-        determinant = new Determinant(linearSystem).calculateDeterminant(count);
+        determinant = new Determinant(linearSystem).calculateDeterminant(count, isColumnZero);
     }
 
     private double[] returnRun() {

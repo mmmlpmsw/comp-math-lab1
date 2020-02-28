@@ -8,17 +8,17 @@ public class Determinant {
         this.system = system;
     }
 
-    double calculateDeterminant(int count) {
-        double determinant = 1;
-        for (int i = 0; i < system.getNumberOfUnknowns(); i ++) {
-            determinant *= system.getEquationCoefficient(i, i);
-        }
-        determinant *= count;
-        return determinant;
+    double calculateDeterminant(int count, boolean isZero) {
+        if (isZero){
+            double determinant = 1;
+            for (int i = 0; i < system.getNumberOfUnknowns(); i ++) {
+                determinant *= system.getEquationCoefficient(i, i);
+            }
+            determinant *= count;
+            return determinant;
+        } else
+            return 0;
     }
-
-
-
 //    private double calculateMatrix(double[][] matrix) {
 //        double result = 0;
 //        if (matrix.length == 2)
