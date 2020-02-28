@@ -10,7 +10,7 @@ public class Algorithm {
     public Algorithm (LinearSystem linearSystem) {
         this.linearSystem = linearSystem;
         this.numberOfUnknowns = linearSystem.getNumberOfUnknowns();
-        this.savedLinearSystem = saveLinearSystem();
+        this.savedLinearSystem = cloneLinearSystem();
         this.solutions = solve();
     }
 
@@ -73,7 +73,7 @@ public class Algorithm {
         }
     }
 
-    private double[][] saveLinearSystem () {
+    private double[][] cloneLinearSystem() {
         double [][] system = new double[numberOfUnknowns][numberOfUnknowns + 1];
         for (int i = 0; i < numberOfUnknowns; i ++)
             for (int j = 0; j < numberOfUnknowns + 1; j ++)

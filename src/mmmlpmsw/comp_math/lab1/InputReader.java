@@ -54,7 +54,7 @@ public class InputReader {
                         double[] coefficients = new double[numberOfUnknowns + 1];
                         for (int j = 0; j < numberOfUnknowns + 1; j++) {
                             double coefficient = Math.random() * 200 - 100;
-                            coefficient = Math.round(coefficient * 100) / 100.0;
+                            coefficient = Math.round(coefficient * 1000) / 1000.0;
                             coefficients[j] = coefficient;
                             System.out.print(coefficient + " ");
                         }
