@@ -42,36 +42,38 @@ public class InputReader {
                     return "";
                 return "";
 
-            case "random": {
-                if (command.value.equals("0") || command.value == null)
-                    throw new InputParseException(colorize("[[RED]]Incorrect command, try again[[RESET]]\n"));
-                int numberOfUnknowns = parse(command.value);
-                ParseStringToEquation.check(numberOfUnknowns);
-                Equation[] equations = new Equation[numberOfUnknowns];
-                System.out.println("Coefficients: ");
-                for (int i = 0; i < numberOfUnknowns; i++) {
-                    double[] coefficients = new double[numberOfUnknowns + 1];
-                    for (int j = 0; j < numberOfUnknowns + 1; j++) {
-                        double coefficient = Math.random() * 200 - 100;
-                        coefficient = Math.round(coefficient * 100) / 100.0;
-                        coefficients[j] = coefficient;
-                        System.out.print(coefficient + " ");
+            case "random":
+                try {
+                    if (command.value.equals("0") || command.value == "")
+                        throw new InputParseException(colorize("[[RED]]Incorrect command, try again[[RESET]]\n"));
+                    int numberOfUnknowns = parse(command.value);
+                    ParseStringToEquation.check(numberOfUnknowns);
+                    Equation[] equations = new Equation[numberOfUnknowns];
+                    System.out.println("Coefficients: ");
+                    for (int i = 0; i < numberOfUnknowns; i++) {
+                        double[] coefficients = new double[numberOfUnknowns + 1];
+                        for (int j = 0; j < numberOfUnknowns + 1; j++) {
+                            double coefficient = Math.random() * 200 - 100;
+                            coefficient = Math.round(coefficient * 100) / 100.0;
+                            coefficients[j] = coefficient;
+                            System.out.print(coefficient + " ");
+                        }
+                        System.out.println();
+                        equations[i] = new Equation(coefficients);
                     }
-                    System.out.println();
-                    equations[i] = new Equation(coefficients);
+                    LinearSystem system = new LinearSystem(equations);
+                    OutputCombiner outputCombiner = new OutputCombiner(system);
+                    outputCombiner.combineOutput();
+                    return "";
+                } catch (NullPointerException e) {
+                    throw new InputParseException(colorize("[[RED]]Enter the number of the unknowns.[[RESET]]"));
                 }
-                LinearSystem system = new LinearSystem(equations);
-                OutputCombiner outputCombiner = new OutputCombiner(system);
-                outputCombiner.combineOutput();
-                return "";
-            }
-            //todo
-            // fixme цветной текст доделать
+
             case "enter": {
                 System.out.print("Enter the number of unknowns >>> ");
                 int count = parse(scanner.nextLine());
                 ParseStringToEquation.check(count);
-                System.out.println("In each string enter the coefficients of the system.>>> ");
+                System.out.println("In each string enter the coefficients of the system >>> ");
                 Equation[] equations = new Equation[count];
                 for (int i = 0; i < count; i++)
                     equations[i] = ParseStringToEquation.trimStringToEquation(count, scanner.nextLine());
@@ -126,7 +128,7 @@ public class InputReader {
             Integer number = Integer.parseInt(string);
             return number;
         } catch (NumberFormatException e) {
-            throw new InputParseException("Error: not an integer.");
+            throw new InputParseException(colorize("[[RED]]Error: not an integer.[[RESET]]"));
         }
     }
 
