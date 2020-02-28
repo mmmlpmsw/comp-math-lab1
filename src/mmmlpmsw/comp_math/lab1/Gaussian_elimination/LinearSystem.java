@@ -25,7 +25,6 @@ public class LinearSystem {
     }
 
     public double findCoefficient(double a, double b) {
-        if (Math.abs(b) < EPS) return 0d;
         return -b/a;
     }
 }
