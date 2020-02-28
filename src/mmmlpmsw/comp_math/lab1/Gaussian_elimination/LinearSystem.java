@@ -1,6 +1,7 @@
 package mmmlpmsw.comp_math.lab1.Gaussian_elimination;
 
 public class LinearSystem {
+    private static final double EPS = 1e-14d;
     private Equation[] matrix;
 
     public LinearSystem (Equation[] matrix) {
@@ -24,7 +25,7 @@ public class LinearSystem {
     }
 
     public double findCoefficient(double a, double b) {
-//        if (a == 0.0f) return 1.0f;
+        if (Math.abs(b) < EPS) return 0d;
         return -b/a;
     }
 }

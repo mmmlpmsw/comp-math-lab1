@@ -5,11 +5,14 @@ import mmmlpmsw.comp_math.lab1.Gaussian_elimination.LinearSystem;
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Residual;
 import mmmlpmsw.comp_math.lab1.utils.OutputFormatter;
 
+import static java.lang.Math.abs;
+
 public class OutputCombiner {
 
     private Algorithm algorithm;
     private Residual residual;
     private LinearSystem linearSystem;
+    private static final double EPS = 1e-11d;
 
     public OutputCombiner(LinearSystem linearSystem) {
         this.algorithm = new Algorithm(linearSystem);
@@ -27,8 +30,9 @@ public class OutputCombiner {
 
         for (int i = 0; i < linearSystem.getNumberOfUnknowns(); i ++) {
             for (int j = 0; j < linearSystem.getNumberOfUnknowns() + 1; j ++) {
-                if (j < i)
-                    System.out.print("   0.0");
+                if (abs(linearSystem.getEquationCoefficient(i, j)) < EPS)
+//                    linearSystem.setEquationCoefficient(i, j, 0d);
+                    System.out.print("  0");
                 else
                     System.out.printf("%.3f", linearSystem.getEquationCoefficient(i, j));
                 System.out.print("  ");
