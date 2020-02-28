@@ -19,7 +19,7 @@ public class OutputCombiner {
 
     public boolean combineOutput() {
         if (algorithm.getDeterminant() == 0) {
-            System.out.println("Can't solve it - detA = 0x");
+            System.out.println("Can't solve it - detA = 0.");
             return false;
         }
 
@@ -43,12 +43,8 @@ public class OutputCombiner {
 
         double[] residuals = residual.getResiduals();
         System.out.println("Residuals: ");
-        for (int i = 0; i < residuals.length; i ++) {
-            if (residuals[i] != 0)
-                System.out.println(ResidualFormatter.format(residuals[i]));
-            else
-                System.out.println(residuals[i]);
-        }
+        for (int i = 0; i < residuals.length; i ++)
+            System.out.println(OutputFormatter.format(residuals[i]));
         return true;
     }
 }

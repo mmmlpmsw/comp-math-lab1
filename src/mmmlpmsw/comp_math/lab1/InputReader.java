@@ -16,11 +16,11 @@ public class InputReader {
         System.out.println(getHelp());
         while (true) {
             try {
-                System.out.print(">>> ");
+                System.out.print("Enter the command >>> ");
                 String response = processCommand(getNextCommand());
                 System.out.println(response);
             } catch (InputParseException e) {
-                System.out.print(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -44,7 +44,7 @@ public class InputReader {
 
             case "random": {
                 if (command.value.equals("0") || command.value == null)
-                    throw new InputParseException("incorrect command");
+                    throw new InputParseException(colorize("[[RED]]Incorrect command, try again[[RESET]]\n"));
                 int numberOfUnknowns = parse(command.value);
                 ParseStringToEquation.check(numberOfUnknowns);
                 Equation[] equations = new Equation[numberOfUnknowns];
@@ -53,7 +53,6 @@ public class InputReader {
                     double[] coefficients = new double[numberOfUnknowns + 1];
                     for (int j = 0; j < numberOfUnknowns + 1; j++) {
                         double coefficient = Math.random() * 200 - 100;
-//                        coefficient = Math.round(coefficient);
                         coefficient = Math.round(coefficient * 100) / 100.0;
                         coefficients[j] = coefficient;
                         System.out.print(coefficient + " ");
@@ -67,13 +66,12 @@ public class InputReader {
                 return "";
             }
             //todo
-            // fixme цветной текст
+            // fixme цветной текст доделать
             case "enter": {
-                System.out.print("Enter the number of unknowns >>>");
-                int count = scanner.nextInt();
-                scanner.nextLine();
-
-                System.out.println("In each string enter the coefficients of the system.");
+                System.out.print("Enter the number of unknowns >>> ");
+                int count = parse(scanner.nextLine());
+                ParseStringToEquation.check(count);
+                System.out.println("In each string enter the coefficients of the system.>>> ");
                 Equation[] equations = new Equation[count];
                 for (int i = 0; i < count; i++)
                     equations[i] = ParseStringToEquation.trimStringToEquation(count, scanner.nextLine());
@@ -116,19 +114,19 @@ public class InputReader {
     }
 
     private String getHelp() {
-        return "To enter from file - use 'file <filename>', " +
-                "\nto randomize coefficients use 'random <number of unknowns>;',  " +
-                "\nto enter equation coefficients from the keyboard use 'enter;' and wait for further directions, " +
-                "\nto exit enter 'exit;'" +
-                "\nto get help use 'help;'. All commands must end in ';'.";
+        return colorize( "To enter from file - use '[[BLUE]]file <filename>;'[[RESET]], " +
+                "\nto randomize coefficients use '[[BLUE]]random <number of unknowns>;[[RESET]]',  " +
+                "\nto enter equation coefficients from the keyboard use '[[BLUE]]enter;[[RESET]]' and wait for further directions, " +
+                "\nto exit enter '[[BLUE]]exit;[[RESET]]'" +
+                "\nto get help use '[[BLUE]]help;[[RESET]]'. All commands must end in '[[BRIGHT_CYAN]];[[RESET]]'.");
     }
 
-    private int parse (String s) throws InputParseException {
+    private int parse (String string) throws InputParseException {
         try {
-            Integer d = Integer.parseInt(s);
-            return d;
+            Integer number = Integer.parseInt(string);
+            return number;
         } catch (NumberFormatException e) {
-            throw new InputParseException("Not an integer, try again.");
+            throw new InputParseException("Error: not an integer.");
         }
     }
 
