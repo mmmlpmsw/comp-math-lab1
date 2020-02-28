@@ -1,7 +1,6 @@
 package mmmlpmsw.comp_math.lab1;
 
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Algorithm;
-import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Determinant;
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.LinearSystem;
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Residual;
 import mmmlpmsw.comp_math.lab1.utils.ResidualFormatter;
@@ -9,13 +8,11 @@ import mmmlpmsw.comp_math.lab1.utils.ResidualFormatter;
 public class OutputCombiner {
 
     private Algorithm algorithm;
-    private Determinant determinant;
     private Residual residual;
     private LinearSystem linearSystem;
 
     public OutputCombiner(LinearSystem linearSystem) {
         this.algorithm = new Algorithm(linearSystem);
-        this.determinant = new Determinant(linearSystem);
         this.residual = new Residual(algorithm);
         this.linearSystem = linearSystem;
     }

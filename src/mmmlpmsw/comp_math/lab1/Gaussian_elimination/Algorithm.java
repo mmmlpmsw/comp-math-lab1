@@ -35,10 +35,8 @@ public class Algorithm {
                 modifyRow(linearSystem, i, k, coefficient);
             }
         }
-        for (int i = 0; i < numberOfUnknowns; i ++) {
-            determinant *= linearSystem.getEquationCoefficient(i, i);
-        }
-            determinant = determinant * count;
+
+        determinant = new Determinant(linearSystem).calculateDeterminant(count);
     }
 
     private double[] returnRun() {
