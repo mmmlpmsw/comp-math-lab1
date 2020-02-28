@@ -2,6 +2,7 @@ package mmmlpmsw.comp_math.lab1;
 
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.Equation;
 import mmmlpmsw.comp_math.lab1.Gaussian_elimination.LinearSystem;
+import static mmmlpmsw.comp_math.lab1.utils.Utilities.colorize;
 
 import java.io.*;
 import java.util.Scanner;
@@ -21,7 +22,6 @@ public class InputReader {
             } catch (InputParseException e) {
                 System.out.print(e.getMessage());
             }
-
         }
     }
 
@@ -31,7 +31,6 @@ public class InputReader {
         }
         request = request.trim();
         UserCommand command = divideCommand(request);
-        String result = new String("");
 
         switch (command.name) {
             case "exit":
