@@ -10,4 +10,5 @@ test_*.xml
 *.plantuml
 ~$*
 aaaa.txt
+input.txt
 gauss_lab1.iml
