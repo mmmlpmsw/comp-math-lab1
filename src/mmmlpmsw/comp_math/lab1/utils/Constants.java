@@ -1,7 +1,6 @@
 package mmmlpmsw.comp_math.lab1.utils;
 
 public class Constants {
-    public static final int ACCURACY = 3;
     public static final class ANSI_COLORS {
         public static final String RESET  = "\u001B[0m";
 
