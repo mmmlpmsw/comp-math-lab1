@@ -9,7 +9,7 @@ public class Determinant {
     }
 
     double calculateDeterminant(int count, boolean isZero) {
-        if (isZero){
+        if (!isZero){
             double determinant = 1;
             for (int i = 0; i < system.getNumberOfUnknowns(); i ++) {
                 determinant *= system.getEquationCoefficient(i, i);
